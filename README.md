@@ -84,7 +84,3 @@ Minimal and focused on the scientific core: `numpy`, `pandas`, `matplotlib` (see
 ## GitHub / repo hygiene
 
 `.gitignore` ignores the local virtual environment (`.venv/`), Python bytecode (`__pycache__/`, `*.pyc`), generated outputs (`outputs/`), and macOS metadata (`.DS_Store`). For publication you can either keep outputs ignored and attach example figures via GitHub Releases/screenshots, or temporarily remove `outputs/` from `.gitignore` and commit a curated subset.
-
-## How to cite / CV line
-
-*Reproducible research artifact: “ZEV/LEG settlement-rule MVP simulator” (Python; ZEV vs LEG with topology discounts; two-rule comparison; fairness metrics & sensitivity).*
