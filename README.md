@@ -39,12 +39,6 @@ pip install -r requirements.txt
 python scripts/run_mvp.py
 ```
 
-## Interview Q&A (30 seconds)
-- **Where does data come from?** Synthetic hourly demand and PV profiles generated from `configs/default.json`; no real meters.
-- **What is validated vs not validated?** Budget balance/no-harm math is unit-tested; tariffs and profiles are not yet validated against a DSO tariff file.
-- **Why do ZEV and LEG differ here?** LEG applies a grid-usage discount to shared PV exports; ZEV nets at the perimeter without that discount.
-- **Next step to make it thesis-grade?** Pull official ElCom tariff components via LINDAS/SPARQL and benchmark against a small measured dataset.
-
 ## Results (figures)
 
 ![Annual bill change](docs/graph1_bill_change.png)  
