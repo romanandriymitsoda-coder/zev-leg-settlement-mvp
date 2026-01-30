@@ -1,4 +1,5 @@
 from __future__ import annotations
+import hashlib
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -36,10 +37,32 @@ def plot_bill_changes(df_long: pd.DataFrame, outpath: str) -> None:
 
 def plot_fairness_frontier(df_points: pd.DataFrame, outpath: str) -> None:
     """Scatter plot: loser share vs max increase."""
+    def _label_offset(label: str) -> tuple[int, int]:
+        """
+        Deterministic, small text offsets (in points) derived from the label hash
+        so nearby points get nudged apart without random jitter.
+        """
+        digest = hashlib.sha1(label.encode("utf-8")).digest()
+
+        def _component(b_mag: int, b_sign: int) -> int:
+            magnitude = 6 + (b_mag % 13)  # 6-18 point shift
+            sign = 1 if (b_sign % 2) else -1
+            return magnitude * sign
+
+        return _component(digest[0], digest[1]), _component(digest[2], digest[3])
+
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.scatter(df_points['loser_share'], df_points['max_increase_chf'])
     for _, r in df_points.iterrows():
-        ax.annotate(r['label'], (r['loser_share'], r['max_increase_chf']), textcoords="offset points", xytext=(6,6), fontsize=9)
+        dx, dy = _label_offset(r['label'])
+        ax.annotate(
+            r['label'],
+            (r['loser_share'], r['max_increase_chf']),
+            textcoords="offset points",
+            xytext=(dx, dy),
+            fontsize=9,
+            bbox={"boxstyle": "round,pad=0.2", "facecolor": "white", "alpha": 0.7, "edgecolor": "none"},
+        )
     ax.set_xlabel("Loser share (fraction with Δ>0)")
     ax.set_ylabel("Max bill increase (CHF/year)")
     ax.set_title("Fairness / dispute-risk frontier across scenarios")
