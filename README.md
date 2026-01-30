@@ -2,7 +2,7 @@
 
 A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 - compares **two settlement rules** (baseline proportional vs **no-harm cap with budget-balanced side-payments**),
-- switches **ZEV vs LEG** and applies a **topology-dependent network-charge discount** (e.g., 15% / 30%),
+- switches **ZEV vs LEG** and applies a **scenario network-charge discount (15%/30%) representing voltage-level/topology cases**,
 - reports **winners/losers** (delta bill vs outside option) and a **fairness view** (max increase + loser share).
 
 ## Scope & Claims (read this first)
@@ -11,9 +11,15 @@ A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 - Results illustrate the **method and sensitivity**, not an exact replication of any specific Swiss DSO bill.
 - Contribution: compares settlement rules and dispute-risk metrics (loser share, max increase) under ZEV vs LEG scenarios.
 
+## Interview Q&A (30 seconds)
+- **Where does data come from?** Synthetic hourly demand and PV profiles from `configs/default.json`; no real meters.
+- **What is validated vs not validated?** Budget balance/no-harm math is unit-tested; tariffs/profiles are not yet DSO-validated.
+- **Why do ZEV and LEG differ here?** LEG applies a grid-usage discount to shared PV exports; ZEV nets at the perimeter without it.
+- **Next step to make it thesis-grade?** Pull ElCom tariff components via LINDAS/SPARQL and benchmark against a small measured set.
+
 > Research question → outputs  
-> How do ZEV vs LEG settlement rules shift cost fairness and dispute risk?  
-> Synthetic hourly demand/PV + tariff params → two figures + CSV summaries in `outputs/` and `docs/`.
+> RQ: which rule reduces dispute risk under ZEV vs LEG?  
+> Outputs: Δ bills + loser share + max increase.
 
 ## Quick start (copy/paste)
 
@@ -99,4 +105,4 @@ Minimal and focused on the scientific core: `numpy`, `pandas`, `matplotlib` (see
 
 ## GitHub / repo hygiene
 
-`.gitignore` ignores the local virtual environment (`.venv/`), Python bytecode (`__pycache__/`, `*.pyc`), generated outputs (`outputs/`), and macOS metadata (`.DS_Store`). For publication you can either keep outputs ignored and attach example figures via GitHub Releases/screenshots, or temporarily remove `outputs/` from `.gitignore` and commit a curated subset.
+`.gitignore` ignores the local virtual environment (`.venv/`), Python bytecode (`__pycache__/`, `*.pyc`), generated outputs (`outputs/`), and macOS metadata (`.DS_Store`). Figures in `docs/*.png` are tracked so the README renders on GitHub; `outputs/` stays gitignored to keep the repo light.
