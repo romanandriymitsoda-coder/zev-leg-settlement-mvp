@@ -99,7 +99,7 @@ Each scenario is evaluated under both settlement rules (Rule 1 and Rule 2); resu
 Minimal and focused on the scientific core: `numpy`, `pandas`, `matplotlib` (see `requirements.txt`).
 
 ## Next steps (thesis roadmap)
-- Plug official ElCom tariff components via LINDAS/SPARQL ([ElCom tariff data](https://lindas-data.ch/)).
+- Plug official ElCom tariff components via LINDAS/SPARQL ([ElCom tariff data](https://www.elcom.admin.ch/en/tariff-data-and-visualisations), [LINDAS SPARQL](https://lindas.admin.ch/sparql/)).
 - Add sensitivity sweeps with more archetypes and parameter ranges (flex share, PV size, discounts).
 - Optional: swap synthetic profiles for measured or standardised profiles when available.
 - Run robustness checks (rounding, infeasible/no-harm edge cases, weather variability).
