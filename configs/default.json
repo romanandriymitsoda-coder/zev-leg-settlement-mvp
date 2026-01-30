@@ -1,0 +1,36 @@
+{
+  "seed": 7,
+  "year": 2025,
+  "tariff": {
+    "energy_price_chf_per_kwh": 0.18,
+    "grid_usage_chf_per_kwh": 0.12,
+    "feed_in_chf_per_kwh": 0.08
+  },
+  "profiles": {
+    "n_hours": 8760,
+    "base_load_a_kwh_per_day": 9.5,
+    "base_load_b_kwh_per_day": 11.5,
+    "base_load_c_kwh_per_day": 10.0,
+    "pv_kwp": 6.0,
+    "pv_capacity_factor_target": 0.12,
+    "flex_energy_b_kwh_per_day": 8.0,
+    "flex_shift_share_to_midday": 0.65
+  },
+  "scenarios": [
+    {
+      "name": "ZEV",
+      "mode": "ZEV",
+      "leg_discount": 0.0
+    },
+    {
+      "name": "LEG_15",
+      "mode": "LEG",
+      "leg_discount": 0.15
+    },
+    {
+      "name": "LEG_30",
+      "mode": "LEG",
+      "leg_discount": 0.3
+    }
+  ]
+}
