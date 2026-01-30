@@ -11,11 +11,11 @@ A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 - Results illustrate the **method and sensitivity**, not an exact replication of any specific Swiss DSO bill.
 - Contribution: compares settlement rules and dispute-risk metrics (loser share, max increase) under ZEV vs LEG scenarios.
 
-## Interview Q&A (30 seconds)
-- **Where does data come from?** Synthetic hourly demand and PV profiles from `configs/default.json`; no real meters.
-- **What is validated vs not validated?** Budget balance/no-harm math is unit-tested; tariffs/profiles are not yet DSO-validated.
-- **Why do ZEV and LEG differ here?** LEG applies a grid-usage discount to shared PV exports; ZEV nets at the perimeter without it.
-- **Next step to make it thesis-grade?** Pull ElCom tariff components via LINDAS/SPARQL and benchmark against a small measured set.
+## Interpretation guide
+- Data source: synthetic hourly profiles plus configurable tariff parameters in `configs/default.json`.
+- What is validated: method and reproducibility; not empirical Swiss billing accuracy (yet).
+- Why ZEV vs LEG differs: grid-usage treatment (ZEV nets behind the perimeter; LEG shares via public grid with discounted grid usage on shared-to-others PV).
+- Next step: plug in official ElCom tariff components (LINDAS/SPARQL) and broaden archetypes/sensitivity.
 
 > Research question → outputs  
 > RQ: which rule reduces dispute risk under ZEV vs LEG?  
