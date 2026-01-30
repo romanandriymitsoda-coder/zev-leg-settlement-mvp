@@ -2,14 +2,15 @@
 
 A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 - compares **two settlement rules** (baseline proportional vs **no-harm cap with budget-balanced side-payments**),
-- switches **ZEV vs LEG** and applies a **scenario network-charge discount (15%/30%) representing voltage-level/topology cases**,
-- reports **winners/losers** (delta bill vs outside option) and a **fairness view** (max increase + loser share).
+- switches **ZEV vs LEG** and applies a **scenario network-charge discount (15%/30%) representing different network-use cases**,
+- reports **winners/losers** (Δ bill vs outside option) and a **fairness view** (max increase + loser share).
 
-## Scope & Claims
-- Uses synthetic hourly profiles for full reproducibility (no smart-meter data).
-- Uses a minimal, configurable tariff parameterisation in configs/default.json.
-- Results demonstrate the method and sensitivity, not an exact replication of any specific Swiss DSO billing scheme.
-- Contribution: a reproducible comparison of settlement rules (baseline vs no-harm safeguard) and dispute-risk metrics (loser share, max increase) across ZEV vs LEG scenarios (incl. discount cases such as 15%/30%).
+## Scope & Claims (read this first)
+- Synthetic hourly profiles are used on purpose for reproducibility; no smart-meter data is included.
+- Tariff values are simplified parameters in `configs/default.json` (tuneable for experiments).
+- Results illustrate the **method and sensitivity**, not an exact replication of any specific Swiss DSO bill.
+- Contribution: compares settlement rules and dispute-risk metrics (loser share, max increase) under ZEV vs LEG scenarios.
+- Reproducibility: one command (run.bat/run.sh) regenerates figures and CSV outputs.
 
 ## Interpretation guide
 - Data source: synthetic hourly profiles plus configurable tariff parameters in `configs/default.json`.
@@ -54,7 +55,7 @@ python scripts/run_mvp.py
 *Fairness / dispute-risk frontier: loser share vs max bill increase, labeled by scenario and rule.*
 
 ### Outputs produced
-- `outputs/graph1_bill_change.png` — annual delta bill per archetype (A/B/C) for each scenario and rule.
+- `outputs/graph1_bill_change.png` — annual Δ bill per archetype (A/B/C) for each scenario and rule.
 - `outputs/graph2_fairness_frontier.png` — scatter of loser share vs max increase (fairness/dispute-risk frontier) with labels.
 - `outputs/scenario_summary.csv` — compact table per scenario/rule with fairness metrics.
 - `outputs/scenario_details.csv` — long-form table per scenario/rule/actor with bills and deltas.
@@ -80,7 +81,7 @@ The default configuration lives in `configs/default.json`. Tweak tariff levels, 
 - **Rule 2 – no-harm, budget-balanced**: no one pays more than their **outside option** (what they would pay alone); caps for harmed participants are funded from winners’ savings; totals remain equal to the community bill (budget balance).
 
 **Fairness metrics**
-- **Delta bill per actor**: community bill minus outside-option bill (negative = savings, positive = harm).
+- **Δ bill per actor**: community bill minus outside-option bill (negative = savings, positive = harm).
 - **Loser share**: fraction of actors with delta > 0 (worse off).
 - **Max increase**: largest delta > 0 across actors (simple dispute-risk proxy).
 
