@@ -5,6 +5,10 @@ A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 - switches **ZEV vs LEG** and applies a **topology-dependent network-charge discount** (e.g., 15% / 30%),
 - reports **winners/losers** (delta bill vs outside option) and a **fairness view** (max increase + loser share).
 
+> Research question → outputs  
+> How do ZEV vs LEG settlement rules shift cost fairness and dispute risk?  
+> Synthetic hourly demand/PV + tariff params → two figures + CSV summaries in `outputs/` and `docs/`.
+
 ## Quick start (copy/paste)
 
 **macOS / Linux (bash/zsh):**
@@ -80,6 +84,17 @@ Each scenario is evaluated under both settlement rules (Rule 1 and Rule 2); resu
 ## Dependencies
 
 Minimal and focused on the scientific core: `numpy`, `pandas`, `matplotlib` (see `requirements.txt`).
+
+## Data sources & assumptions
+- Synthetic hourly load/PV profiles are generated procedurally (see `src/zevleg_mvp/profiles.py`) using the parameters in `configs/default.json`.
+- Tariffs (energy price, grid usage, feed-in) are parameters in `configs/default.json`.
+- Thesis extension: replace those tariff parameters with official ElCom tariff data fetched from LINDAS via SPARQL (see LINDAS/ElCom tariff catalog reference).
+
+## Thesis extension plan (next steps)
+- Wire the SPARQL fetch to import official ElCom tariff data into the config layer.
+- Cross-check synthetic profiles against a small set of measured smart-meter traces; document variance.
+- Add sensitivity analysis (PV size, flexibility share, tariff spread) with small Monte-Carlo sweeps.
+- Package notebooks/figures for committee review (single command to regenerate all artefacts).
 
 ## GitHub / repo hygiene
 
