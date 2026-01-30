@@ -7,7 +7,7 @@ A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 
 ## Scope & Claims
 - Synthetic hourly profiles are used on purpose for reproducibility; no smart-meter data is included.
-- Tariff values are simplified parameters in `configs/default.json` (tuneable for experiments).
+- Tariff values are simplified parameters in `configs/default.json` (configurable for experiments).
 - Results illustrate the **method and sensitivity**, not an exact replication of any specific Swiss DSO bill.
 - Contribution: compares settlement rules and dispute-risk metrics (loser share, max increase) under ZEV vs LEG scenarios.
 - Reproducibility: one command (run.bat/run.sh) regenerates figures and CSV outputs.
@@ -82,8 +82,8 @@ The default configuration lives in `configs/default.json`. Tweak tariff levels, 
 
 **Fairness metrics**
 - **Δ bill per actor**: community bill minus outside-option bill (negative = savings, positive = harm).
-- **Loser share**: fraction of actors with delta > 0 (worse off).
-- **Max increase**: largest delta > 0 across actors (simple dispute-risk proxy).
+- **Loser share**: fraction of actors with Δ bill > 0 (worse off).
+- **Max increase**: largest Δ bill > 0 across actors (simple dispute-risk proxy).
 
 ## Scenarios
 
