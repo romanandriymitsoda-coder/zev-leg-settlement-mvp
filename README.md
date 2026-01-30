@@ -5,6 +5,12 @@ A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 - switches **ZEV vs LEG** and applies a **topology-dependent network-charge discount** (e.g., 15% / 30%),
 - reports **winners/losers** (delta bill vs outside option) and a **fairness view** (max increase + loser share).
 
+## Scope & Claims (read this first)
+- Synthetic hourly profiles are used on purpose for reproducibility; no smart-meter data is included.
+- Tariff values are simplified parameters in `configs/default.json` (tuneable for experiments).
+- Results illustrate the **method and sensitivity**, not an exact replication of any specific Swiss DSO bill.
+- Contribution: compares settlement rules and dispute-risk metrics (loser share, max increase) under ZEV vs LEG scenarios.
+
 > Research question → outputs  
 > How do ZEV vs LEG settlement rules shift cost fairness and dispute risk?  
 > Synthetic hourly demand/PV + tariff params → two figures + CSV summaries in `outputs/` and `docs/`.
@@ -32,6 +38,12 @@ source .venv/bin/activate  # Windows: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python scripts/run_mvp.py
 ```
+
+## Interview Q&A (30 seconds)
+- **Where does data come from?** Synthetic hourly demand and PV profiles generated from `configs/default.json`; no real meters.
+- **What is validated vs not validated?** Budget balance/no-harm math is unit-tested; tariffs and profiles are not yet validated against a DSO tariff file.
+- **Why do ZEV and LEG differ here?** LEG applies a grid-usage discount to shared PV exports; ZEV nets at the perimeter without that discount.
+- **Next step to make it thesis-grade?** Pull official ElCom tariff components via LINDAS/SPARQL and benchmark against a small measured dataset.
 
 ## Results (figures)
 
@@ -85,16 +97,11 @@ Each scenario is evaluated under both settlement rules (Rule 1 and Rule 2); resu
 
 Minimal and focused on the scientific core: `numpy`, `pandas`, `matplotlib` (see `requirements.txt`).
 
-## Data sources & assumptions
-- Synthetic hourly load/PV profiles are generated procedurally (see `src/zevleg_mvp/profiles.py`) using the parameters in `configs/default.json`.
-- Tariffs (energy price, grid usage, feed-in) are parameters in `configs/default.json`.
-- Thesis extension: replace those tariff parameters with official ElCom tariff data fetched from LINDAS via SPARQL (see LINDAS/ElCom tariff catalog reference).
-
-## Thesis extension plan (next steps)
-- Wire the SPARQL fetch to import official ElCom tariff data into the config layer.
-- Cross-check synthetic profiles against a small set of measured smart-meter traces; document variance.
-- Add sensitivity analysis (PV size, flexibility share, tariff spread) with small Monte-Carlo sweeps.
-- Package notebooks/figures for committee review (single command to regenerate all artefacts).
+## Next steps (thesis roadmap)
+- Plug official ElCom tariff components via LINDAS/SPARQL ([ElCom tariff data](https://lindas-data.ch/)).
+- Add sensitivity sweeps with more archetypes and parameter ranges (flex share, PV size, discounts).
+- Optional: swap synthetic profiles for measured or standardised profiles when available.
+- Run robustness checks (rounding, infeasible/no-harm edge cases, weather variability).
 
 ## GitHub / repo hygiene
 
