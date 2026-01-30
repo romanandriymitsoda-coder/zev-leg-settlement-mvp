@@ -5,11 +5,11 @@ A tiny, reproducible simulator for a Swiss ZEV/LEG thesis pre-proposal. It:
 - switches **ZEV vs LEG** and applies a **scenario network-charge discount (15%/30%) representing voltage-level/topology cases**,
 - reports **winners/losers** (delta bill vs outside option) and a **fairness view** (max increase + loser share).
 
-## Scope & Claims (read this first)
-- Synthetic hourly profiles are used on purpose for reproducibility; no smart-meter data is included.
-- Tariff values are simplified parameters in `configs/default.json` (tuneable for experiments).
-- Results illustrate the **method and sensitivity**, not an exact replication of any specific Swiss DSO bill.
-- Contribution: compares settlement rules and dispute-risk metrics (loser share, max increase) under ZEV vs LEG scenarios.
+## Scope & Claims
+- Uses synthetic hourly profiles for full reproducibility (no smart-meter data).
+- Uses a minimal, configurable tariff parameterisation in configs/default.json.
+- Results demonstrate the method and sensitivity, not an exact replication of any specific Swiss DSO billing scheme.
+- Contribution: a reproducible comparison of settlement rules (baseline vs no-harm safeguard) and dispute-risk metrics (loser share, max increase) across ZEV vs LEG scenarios (incl. discount cases such as 15%/30%).
 
 ## Interpretation guide
 - Data source: synthetic hourly profiles plus configurable tariff parameters in `configs/default.json`.
