@@ -13,10 +13,10 @@ from zevleg_mvp.settlement import rule1_proportional, rule2_no_harm_budget_balan
 
 
 def _example_case():
-    # Feasible toy case with two participants capped at their outside option
-    gross = {"A": 50.0, "B": 150.0, "C": 300.0}
-    outside = {"A": 70.0, "B": 110.0, "C": 200.0}
-    group_cost = 380.0  # < sum(outside), so no-harm is feasible
+    """Deterministic toy case with feasible no-harm caps."""
+    gross = {"A": 100.0, "B": 100.0, "C": 100.0}
+    outside = {"A": 90.0, "B": 110.0, "C": 120.0}
+    group_cost = 300.0  # below sum(outside) so caps are feasible
     alloc_r1 = rule1_proportional(group_cost, gross)
     alloc_r2 = rule2_no_harm_budget_balanced(alloc_r1, outside, group_cost)
     return outside, group_cost, alloc_r2

@@ -23,3 +23,6 @@ jobs:
 
       - name: Run MVP script
         run: python scripts/run_mvp.py
+
+      - name: Run tests
+        run: pytest -q
