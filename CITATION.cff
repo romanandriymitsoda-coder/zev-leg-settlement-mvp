@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+title: "ZEV/LEG settlement-rule MVP simulator"
+version: "0.1.0"
+authors:
+  - family-names: "Mitsoda"
+    given-names: "Roman-Andriy"
+repository-code: "https://github.com/romanandriymitsoda-coder/zev-leg-settlement-mvp"

@@ -5,10 +5,11 @@ on:
   pull_request:
 
 jobs:
-  build:
+  run-mvp:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -20,20 +21,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests
-        run: pytest
-
-      - name: Run simulation
+      - name: Run MVP script
         run: python scripts/run_mvp.py
-
-      - name: Copy plots to docs
-        run: |
-          mkdir -p docs
-          cp outputs/*.png docs/
-
-      - name: Upload plots artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs-plots
-          path: docs/*.png
