@@ -1,3 +1,4 @@
+![CI](https://github.com/romanandriymitsoda-coder/zev-leg-settlement-mvp/actions/workflows/ci.yml/badge.svg)
 # ZEV/LEG settlement-rule MVP simulator (Python)
 
 A concise, reproducible simulator to support a Swiss ZEV/LEG thesis on settlement-rule design and dispute-risk metrics. It compares proportional allocation (Rule 1) with a no-harm, budget-balanced rule (Rule 2) across ZEV versus LEG grid-usage treatments.
@@ -109,6 +110,12 @@ Each scenario is evaluated under both settlement rules; results are exported to 
 - Add sensitivity sweeps with more archetypes and parameter ranges (flex share, PV size, discounts).
 - Optional: swap synthetic profiles for measured or standardised profiles when available.
 - Run robustness checks (rounding, infeasible/no-harm edge cases, weather variability).
+- Add thesis metrics: cost-causation gap (coincident-peak proxy vs network-charge share) and a participation threshold model (join if expected savings - switching cost >= 0).
+
+## References (official sources)
+- ElCom tariff data & visualisations: https://www.elcom.admin.ch/de/tarifdaten-und-visualisierungen
+- Fedlex (Swiss energy law, e.g., EnG/EnV/StromVG/StromVV): https://www.fedlex.admin.ch/
+- BFE explanatory report (Energieverordnung revision): https://pubdb.bfe.admin.ch/de/publication/download/11639
 
 ## GitHub / repo hygiene
 
